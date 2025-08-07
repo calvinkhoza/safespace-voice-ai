@@ -12,7 +12,8 @@ import {
   Settings,
   X,
   ChevronLeft,
-  Shield
+  Shield,
+  Brain
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -22,9 +23,11 @@ import { cn } from "@/lib/utils";
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  activeTab?: string;
+  setActiveTab?: (tab: string) => void;
 }
 
-export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+export const Sidebar = ({ isOpen, onClose, activeTab, setActiveTab }: SidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,6 +43,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     { id: "legal", icon: Scale, label: t("legal_assistance"), path: "/legal" },
     { id: "resources", icon: BookOpen, label: t("resources"), path: "/resources" },
     { id: "community", icon: Users, label: t("community"), path: "/community" },
+    { id: "ai-features", icon: Brain, label: "AI Features", path: "/ai-features" },
     { id: "settings", icon: Settings, label: t("settings"), path: "/settings" },
   ];
 
